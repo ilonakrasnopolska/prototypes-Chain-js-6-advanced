@@ -14,7 +14,9 @@ export function createSearchForm() {
     e.preventDefault()
     if (isValid(input)) {
       input.classList.remove('invalid')
-      inputBox.children[1].remove()
+      if(inputBox.children[1]) {
+        inputBox.children[1].remove()
+      }
     }
   })
 

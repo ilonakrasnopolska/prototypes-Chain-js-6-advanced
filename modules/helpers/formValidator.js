@@ -1,23 +1,25 @@
 import {label} from "../visualPart/DOM-elements.js"
+import {getPrototypesChainByClass} from "./getPrototypesChainByClass.js"
 
 export function isValid(input) {
   let success = true
-  if (input.value.length === 0) {
+  if (input.value.length === 0 || !isNaN(input.value) || typeof window[input.value] === 'undefined') {
     input.classList.add('invalid')
-    label.textContent = 'The value is empty!'
+
+    if (input.value.length === 0) {
+      label.textContent = 'The value is empty!'
+    } else if (!isNaN(input.value)) {
+      label.textContent = 'The value should not contain a number!'
+    } else {
+      label.textContent = 'The wrong value , does not exist!'
+    }
+
     input.parentElement.append(label)
-    success = false
-    return success
-  }
-  if (!isNaN(input.value)) {
-    input.classList.add('invalid')
-    label.textContent = 'The value should not contain a number!'
-    input.parentElement.append(label)
-    success = false
     input.value = ''
+    success = false
     return success
   }
-  else {
-    return success
-  }
+
+  getPrototypesChainByClass(input)
+  return success
 }
