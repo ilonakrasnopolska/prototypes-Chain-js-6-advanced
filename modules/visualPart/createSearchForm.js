@@ -12,7 +12,7 @@ export function createSearchForm() {
   //add form e listener
   form.addEventListener('submit', (e) => {
     e.preventDefault()
-    if (isValid(input)) {
+    if (isValid()) {
       input.classList.remove('invalid')
       if(inputBox.children[1]) {
         inputBox.children[1].remove()

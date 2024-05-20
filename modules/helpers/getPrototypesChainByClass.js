@@ -1,11 +1,30 @@
-export function getPrototypesChainByClass(input) {
-  const userInput = input.value.toLowerCase()
-  const windowValue = window[input.value]
+import {input, list} from "../visualPart/DOM-elements.js"
+import {renderPrototypeChain} from "../visualPart/createListOfPrototypeChain.js"
 
-  if (windowValue || typeof windowValue === 'function') {
-    if (userInput === windowValue.name.toLowerCase()) {
-      console.log(windowValue)
-      input.value = ''
-    }
+function getPrototypeChain(obj) {
+  //empty arr for adding prototype name's
+  let chain = []
+  //get class prototype
+  let prototype = obj.prototype
+
+  while (prototype) {
+    chain.push(prototype)
+    prototype = Object.getPrototypeOf(prototype)
+  }
+  return chain.map(proto => {
+   renderPrototypeChain(proto)
+  })
+}
+
+export function createPrototypeChainList() {
+  //class name from input value
+  const className = input.value
+  //function from window by name from input
+  const globalClassReference = window[className]
+
+  if (globalClassReference || typeof globalClassReference === 'function') {
+    list.innerHTML = ``
+    getPrototypeChain(globalClassReference)
   }
 }
+

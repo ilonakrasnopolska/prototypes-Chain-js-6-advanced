@@ -1,7 +1,7 @@
-import {label} from "../visualPart/DOM-elements.js"
-import {getPrototypesChainByClass} from "./getPrototypesChainByClass.js"
+import {label, input} from "../visualPart/DOM-elements.js"
+import {createPrototypeChainList} from "./getPrototypesChainByClass.js"
 
-export function isValid(input) {
+export function isValid() {
   let success = true
   if (input.value.length === 0 || !isNaN(input.value) || typeof window[input.value] === 'undefined') {
     input.classList.add('invalid')
@@ -18,8 +18,8 @@ export function isValid(input) {
     input.value = ''
     success = false
     return success
+  } else {
+    createPrototypeChainList()
+    return success
   }
-
-  getPrototypesChainByClass(input)
-  return success
 }
