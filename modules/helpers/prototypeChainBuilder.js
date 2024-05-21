@@ -1,5 +1,5 @@
-import {input, list} from "../visualPart/DOM-elements.js"
-import {renderPrototypeChain} from "../visualPart/createListOfPrototypeChain.js"
+import {container, input, list} from "../visualPart/DOM-elements.js"
+import {renderPrototypeChain} from "../visualPart/prototypeChainRenderer.js"
 
 function getPrototypeChain(obj) {
   //empty arr for adding prototype name's

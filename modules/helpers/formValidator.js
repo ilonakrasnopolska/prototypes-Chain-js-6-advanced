@@ -1,5 +1,5 @@
 import {label, input} from "../visualPart/DOM-elements.js"
-import {createPrototypeChainList} from "./getPrototypesChainByClass.js"
+import {createPrototypeChainList} from "./prototypeChainBuilder.js"
 
 export function isValid() {
   let success = true
