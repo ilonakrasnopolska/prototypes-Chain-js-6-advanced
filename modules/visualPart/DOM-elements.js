@@ -21,8 +21,8 @@ export const input = new CustomElement('input', 'form__input',
   '').createElement()
 export const label = new CustomElement('label', 'error-message',
   '').createElement()
-export const button = new CustomElement('button', 'btn btn-lg btn-info col-sm-2',
-  'Show Chain').createElement()
+export const button = new CustomElement('button', 'btn btn-lg btn-info col-sm-3',
+  'Show Prototype Chain 🧬').createElement()
 export const list = new CustomElement('ol', 'accordion',
   '').createElement()
 

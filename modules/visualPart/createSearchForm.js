@@ -6,6 +6,7 @@ export function createSearchForm() {
   //set search form settings
   form.role = 'search'
   input.type = 'search'
+  input.setAttribute('aria-label', 'search')
   input.placeholder = 'Enter a name of class'
   button.type = 'submit'
 

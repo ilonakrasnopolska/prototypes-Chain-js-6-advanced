@@ -12,21 +12,25 @@ export function addListToDOC() {
   container.append(list)
 }
 
-export function renderPrototypeChain(proto) {
+export function renderPrototypeChain(properties, protoName) {
   //create element li
   let item = new CustomElement('li', 'accordion-item', '').createElement()
 
   // create header with button
   let accordionHeader = new CustomElement('h2', 'accordion-header', '').createElement()
-  let accordionButton = proto && proto.constructor && proto.constructor.name ?
-    new CustomElement('a', 'accordion-button', `${proto.constructor.name}`).createElement() :
+  let accordionButton = protoName && protoName.constructor && protoName.constructor.name ?
+    new CustomElement('a', 'accordion-button', `${protoName.constructor.name}`).createElement() :
     new CustomElement('a', 'accordion-button', 'Untitled').createElement()
 
   //for creating list inside button with data about prototype
-  let subList = new CustomElement('ol', 'accordion-collapse collapse',
+  let subList = new CustomElement('ul', 'accordion-collapse collapse',
     '').createElement()
-  // create accordion collapse - box with content inside button
-  createAccordionBody(subList, item)
+  console.log(properties)
+  //create sublist with properties for each accordion with prototype name
+  properties.forEach(property => {
+    // create accordion collapse - box with content inside button
+    createAccordionBody(subList, property)
+  })
 
   // set id's and attributes and etc
   let collapseId = `collapse${counter}`

@@ -1,14 +1,8 @@
 import {CustomElement} from "./DOM-elements.js"
-import {prototypeDataRetriever} from "../helpers/prototypeInspector.js"
 
-export function createAccordionBody(subList) {
+export function createAccordionBody(subList, property) {
   // create accordion collapse - box with content inside button
-  let accordionBody = new CustomElement('div', 'card card-body', 'one').createElement()
-
-  let type = prototypeDataRetriever(Array).type
-  console.log(type)
-  accordionBody.textContent = type
-
-  subList.appendChild(accordionBody)
-  return subList
+    let item = new CustomElement('li', 'item',
+      `Property: ${property}`).createElement()
+    subList.appendChild(item)
 }
