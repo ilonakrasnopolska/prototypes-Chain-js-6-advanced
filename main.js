@@ -1,5 +1,5 @@
 import {render} from "./modules/visualPart/render.js"
 
-render()
-
-
+document.addEventListener("DOMContentLoaded", () => {
+ render()
+})

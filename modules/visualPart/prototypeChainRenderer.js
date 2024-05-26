@@ -1,36 +1,40 @@
 import {container, CustomElement, input, list} from "./DOM-elements.js"
-import {createAccordionBody} from "./prototypeDataRenderer.js"
+import {createAccordionBody} from "./propertiesRenderer.js"
 
 //for creating new id of accordion tab's
 let counter = 1
 //for open and close accordion
 let isExpanded = false
 
-
 export function addListToDOC() {
   list.id="accordionExample"
   container.append(list)
 }
 
-export function renderPrototypeChain(properties, protoName) {
+export function renderPrototypeChain(prototype, properties) {
   //create element li
   let item = new CustomElement('li', 'accordion-item', '').createElement()
 
   // create header with button
   let accordionHeader = new CustomElement('h2', 'accordion-header', '').createElement()
-  let accordionButton = protoName && protoName.constructor && protoName.constructor.name ?
-    new CustomElement('a', 'accordion-button', `${protoName.constructor.name}`).createElement() :
+  let accordionButton = prototype && prototype.constructor && prototype.constructor.name ?
+    new CustomElement('a', 'accordion-button', `${prototype.constructor.name}`).createElement() :
     new CustomElement('a', 'accordion-button', 'Untitled').createElement()
 
   //for creating list inside button with data about prototype
-  let subList = new CustomElement('ul', 'accordion-collapse collapse',
+  let subList = new CustomElement('ul', 'accordion-collapse collapse pt-2',
     '').createElement()
-  console.log(properties)
+  let subTitle = new CustomElement('p', 'lead',
+    'Click on the button to find out the type of property:').createElement()
+  subList.append(subTitle)
+
   //create sublist with properties for each accordion with prototype name
-  properties.forEach(property => {
+  properties.keys.length === 0 ? createAccordionBody(subList, 'No name') :
+    properties.keys.forEach(property => {
     // create accordion collapse - box with content inside button
     createAccordionBody(subList, property)
   })
+
 
   // set id's and attributes and etc
   let collapseId = `collapse${counter}`

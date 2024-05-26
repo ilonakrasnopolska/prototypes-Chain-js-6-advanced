@@ -1,4 +1,4 @@
-import {container, input, list} from "../visualPart/DOM-elements.js"
+import {input, list} from "../visualPart/DOM-elements.js"
 import {renderPrototypeChain} from "../visualPart/prototypeChainRenderer.js"
 import {getEnumerableProperties} from "./prototypeInspector.js"
 
@@ -6,17 +6,18 @@ function getPrototypeChain(obj) {
   //empty arr for adding prototype name's
   let chain = []
   //get class prototype
-  let prototype = obj.prototype
+  let currentPrototype = obj.prototype
 
-  while (prototype) {
+  while (currentPrototype) {
 
-    chain.push({name: prototype})
+    chain.push({name: currentPrototype})
 
-    prototype = Object.getPrototypeOf(prototype)
+    currentPrototype = Object.getPrototypeOf(currentPrototype)
   }
 
   return chain.map(obj => {
-    return { ...obj, properties: getEnumerableProperties(obj.name)  }
+    let properties = getEnumerableProperties(obj.name)
+    return { ...obj, properties}
   })
 }
 
@@ -29,8 +30,9 @@ export function createPrototypeChainList() {
   if (globalClassReference || typeof globalClassReference === 'function') {
     list.innerHTML = ``
     const chain = getPrototypeChain(globalClassReference)
+    console.log(chain)
     chain.forEach(proto => {
-      renderPrototypeChain(proto.properties, proto.name)
+      renderPrototypeChain(proto.name, proto.properties)
     })
   }
 }

@@ -1,19 +1,15 @@
 export function getEnumerableProperties (obj) {
-  //for getting all properties
+  //for getting only enumerable properties and their types!!!
+  if (typeof obj !== 'object' || obj === null) {
+    return []
+  }
 
-  // let properties = []
-  // console.log(obj)
-  // for (let key in obj) {
-  //   properties.push(key)
-  // }
-  // console.log(properties)
-  // return properties
+  const enumerableProperties = Object.getOwnPropertyNames(obj)
 
-  //for getting only enumerable properties!!!
-  return Object.keys(obj)
+  const keys = enumerableProperties.map(prop => {
+    let value = prop
+    let type = typeof obj
+    return {value, type}
+  })
+  return {keys}
 }
-
-// let properties = getEnumerableProperties(Image.prototype)
-
-
-    // properties.push({ name: prop, type: typeof obj[prop] })

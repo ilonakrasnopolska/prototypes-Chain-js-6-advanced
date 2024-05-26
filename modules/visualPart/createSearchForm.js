@@ -20,6 +20,13 @@ export function createSearchForm() {
       }
     }
   })
+  //add input e listener
+  input.addEventListener('input', () => {
+    input.classList.remove('invalid')
+    if(inputBox.children[1]) {
+      inputBox.children[1].remove()
+    }
+  })
 
   //append all elements
   inputBox.append(input)
