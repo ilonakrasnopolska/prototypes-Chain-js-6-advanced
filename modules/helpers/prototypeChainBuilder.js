@@ -21,7 +21,7 @@ function getPrototypeChain(obj) {
   })
 }
 
-export function createPrototypeChainList() {
+export async function createPrototypeChainList() {
   //class name from input value
   const className = input.value
   //function from window by name from input

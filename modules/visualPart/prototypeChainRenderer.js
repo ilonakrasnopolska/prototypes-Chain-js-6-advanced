@@ -17,9 +17,9 @@ export function renderPrototypeChain(prototype, properties) {
 
   // create header with button
   let accordionHeader = new CustomElement('h2', 'accordion-header', '').createElement()
-  let accordionButton = prototype && prototype.constructor && prototype.constructor.name ?
-    new CustomElement('a', 'accordion-button', `${prototype.constructor.name}`).createElement() :
-    new CustomElement('a', 'accordion-button', 'Untitled').createElement()
+  let accordionButton = prototype && prototype.constructor && prototype.constructor.name
+    ? new CustomElement('a', 'accordion-button', `${prototype.constructor.name}`).createElement()
+    : new CustomElement('a', 'accordion-button', 'Untitled').createElement()
 
   //for creating list inside button with data about prototype
   let subList = new CustomElement('ul', 'accordion-collapse collapse pt-2',
@@ -29,8 +29,9 @@ export function renderPrototypeChain(prototype, properties) {
   subList.append(subTitle)
 
   //create sublist with properties for each accordion with prototype name
-  properties.keys.length === 0 ? createAccordionBody(subList, 'No name') :
-    properties.keys.forEach(property => {
+  properties.keys.length === 0
+    ? createAccordionBody(subList, 'No name')
+    : properties.keys.forEach(property => {
     // create accordion collapse - box with content inside button
     createAccordionBody(subList, property)
   })
